@@ -1,200 +1,196 @@
-/* 
-    ========================================
-    Janak Bhandari - GSAP & Interactivity
-    ========================================
-*/
+// Janak Portfolio - Script
 
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Loading Animation
-    const loader = document.getElementById('loader');
-    const progressBar = document.querySelector('.progress-inner');
-    
-    let width = 0;
-    const interval = setInterval(() => {
-        if (width >= 100) {
-            clearInterval(interval);
-            gsap.to(loader, {
-                opacity: 0,
-                duration: 1,
-                onComplete: () => {
-                    loader.style.display = 'none';
-                    initAnimations();
-                }
-            });
-        } else {
-            width += Math.random() * 20;
-            if (width > 100) width = 100;
-            progressBar.style.width = width + '%';
-        }
-    }, 200);
-
-    // 2. Custom Cursor
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-
-    window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
-    });
-
-    // 3. Typing Effect
-    const typingText = document.querySelector('.type-text');
-    const words = ["Full Stack Developer", "AI Enthusiast", "CEO at Janak Tech", "UI/UX Specialist"];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function type() {
-        const currentWord = words[wordIndex];
-        if (isDeleting) {
-            typingText.textContent = currentWord.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typingText.textContent = currentWord.substring(0, charIndex + 1);
-            charIndex++;
-        }
-
-        if (!isDeleting && charIndex === currentWord.length) {
-            setTimeout(() => isDeleting = true, 2000);
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-        }
-
-        const speed = isDeleting ? 100 : 200;
-        setTimeout(type, speed);
-    }
-    type();
-
-    // 4. GSAP Scroll Animations
-    function initAnimations() {
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Hero Content Parallax
-        gsap.to(".hero-content", {
-            scrollTrigger: {
-                trigger: ".hero-section",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            },
-            y: 200,
-            opacity: 0
-        });
-
-        // Section Reveal
-        const sections = document.querySelectorAll('section');
-        sections.forEach(section => {
-            gsap.from(section.querySelectorAll('.section-header'), {
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 80%",
-                },
-                y: 50,
-                opacity: 0,
-                duration: 1
-            });
-        });
-
-        // Skill Bars
-        gsap.utils.toArray(".skill-fill").forEach(bar => {
-            gsap.to(bar, {
-                scrollTrigger: {
-                    trigger: bar,
-                    start: "top 90%",
-                },
-                width: bar.getAttribute('data-width'),
-                duration: 1.5,
-                ease: "power2.out"
-            });
-        });
-
-        // About Counters
-        const counters = document.querySelectorAll('.counter');
-        counters.forEach(counter => {
-            const target = +counter.getAttribute('data-target');
-            gsap.to(counter, {
-                scrollTrigger: {
-                    trigger: counter,
-                    start: "top 90%",
-                },
-                innerText: target,
-                duration: 2,
-                snap: { innerText: 1 },
-                ease: "power1.out"
-            });
-        });
-
-        // Project Cards 3D Effect (Tilt.js is handles most, but GSAP for entry)
-        gsap.from(".project-card", {
-            scrollTrigger: {
-                trigger: ".projects-grid",
-                start: "top 80%",
-            },
-            y: 100,
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Loading Screen
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        gsap.to(loader, {
             opacity: 0,
             duration: 1,
-            stagger: 0.2
+            onComplete: () => {
+                loader.style.display = 'none';
+                document.body.classList.remove('loading');
+                initHeroAnimations();
+            }
+        });
+    }, 2000);
+
+    // 2. Custom Cursor
+    const cursor = document.getElementById('custom-cursor');
+    const follower = document.getElementById('cursor-follower');
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+
+        gsap.to(follower, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.1
+        });
+    });
+
+    // Add hover effect to links and buttons
+    const interactiveElements = document.querySelectorAll('a, button, .glass-card, .service-card, .project-info');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+    });
+
+    // 3. Navbar Scroll Effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // 4. GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    function initHeroAnimations() {
+        gsap.from(".fade-up", {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out"
         });
     }
 
-    // 5. Particles.js Config
-    particlesJS('particles-js', {
-        "particles": {
-            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#00d2ff" },
-            "shape": { "type": "circle" },
-            "opacity": { "value": 0.5, "random": false },
-            "size": { "value": 3, "random": true },
-            "line_linked": { "enable": true, "distance": 150, "color": "#00d2ff", "opacity": 0.2, "width": 1 },
-            "move": { "enable": true, "speed": 1, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+    // Scroll Reveal for sections
+    const sections = document.querySelectorAll('.section-header');
+    sections.forEach(sec => {
+        gsap.from(sec, {
+            scrollTrigger: {
+                trigger: sec,
+                start: "top 80%",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.8
+        });
+    });
+
+    // Services Stagger
+    gsap.from(".service-card", {
+        scrollTrigger: {
+            trigger: "#services",
+            start: "top 70%",
         },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-            "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
-        },
-        "retina_detect": true
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15
     });
 
-    // 6. Theme Toggle
-    const themeBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    
-    themeBtn.addEventListener('click', () => {
-        body.classList.toggle('light-theme');
-        const icon = themeBtn.querySelector('i');
-        if (body.classList.contains('light-theme')) {
-            icon.classList.replace('fa-moon', 'fa-sun');
-        } else {
-            icon.classList.replace('fa-sun', 'fa-moon');
-        }
+    // Projects Parallax
+    const projects = document.querySelectorAll('.project-showcase');
+    projects.forEach(proj => {
+        gsap.from(proj.querySelector('.project-info'), {
+            scrollTrigger: {
+                trigger: proj,
+                start: "top 75%",
+            },
+            x: -50,
+            opacity: 0,
+            duration: 1
+        });
+
+        gsap.from(proj.querySelector('.project-image-wrap'), {
+            scrollTrigger: {
+                trigger: proj,
+                start: "top 75%",
+            },
+            x: 50,
+            opacity: 0,
+            duration: 1
+        });
     });
 
-    // 7. Navbar Scroll Effect
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('.main-header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+    // 5. Chatbot Toggle
+    const chatBtn = document.getElementById('ai-chat-btn');
+    const chatModal = document.getElementById('chat-modal');
+    const closeChat = document.getElementById('close-chat');
+
+    chatBtn.addEventListener('click', () => {
+        chatModal.classList.remove('hidden');
     });
 
-    // 8. Vanilla Tilt Initialization
-    VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-        max: 15,
-        speed: 400,
-        glare: true,
-        "max-glare": 0.2,
+    closeChat.addEventListener('click', () => {
+        chatModal.classList.add('hidden');
     });
+
+    // 6. Three.js Subtle Background
+    initThreeJS();
 });
+
+function initThreeJS() {
+    const canvas = document.getElementById('bg-canvas');
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 30;
+
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    // Particles
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 700;
+    const posArray = new Float32Array(particlesCount * 3);
+
+    for (let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 100;
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+    // Custom particle material (subtle blue/purple glow)
+    const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.05,
+        color: 0x00f0ff,
+        transparent: true,
+        opacity: 0.4,
+        blending: THREE.AdditiveBlending
+    });
+
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    // Mouse interation
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener('mousemove', (event) => {
+        mouseX = event.clientX / window.innerWidth - 0.5;
+        mouseY = event.clientY / window.innerHeight - 0.5;
+    });
+
+    const clock = new THREE.Clock();
+
+    function animate() {
+        requestAnimationFrame(animate);
+        const elapsedTime = clock.getElapsedTime();
+
+        particlesMesh.rotation.y = elapsedTime * 0.05;
+
+        // Mouse parallax effect
+        particlesMesh.rotation.x += (mouseY * 0.5 - particlesMesh.rotation.x) * 0.05;
+        particlesMesh.rotation.y += (mouseX * 0.5 - particlesMesh.rotation.y) * 0.05;
+
+        renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Handle Resize
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+}
