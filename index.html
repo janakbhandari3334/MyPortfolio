@@ -1,469 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Janak Bhandari | CEO & Full Stack Developer</title>
-    <meta name="description" content="Official Portfolio of Janak Bhandari - CEO of Janak Tech Solutions Ltd. Full Stack Developer specialized in building future-ready digital experiences.">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description"
+        content="Portfolio of Janak Bhandari - CEO & Full Stack Developer. Discover an elite digital empire.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="dark-theme">
-    
-    <!-- Loading Screen -->
-    <div id="loader" class="loader-wrapper">
+
+<body class="loading">
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
         <div class="loader-content">
-            <h1 class="loader-logo">JANAK<span>BHANDARI</span></h1>
-            <div class="progress-bar"><div class="progress-inner"></div></div>
-            <p class="loader-text">Initializing futuristic experience...</p>
+            <div class="loader-logo">JB.</div>
+            <div class="loader-text">Initialize Empire</div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
         </div>
     </div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-
-    <!-- Background Elements -->
-    <div class="bg-blur"></div>
-    <div id="particles-js"></div>
-
-    <!-- Header / Navbar -->
-    <header class="main-header">
-        <nav class="navbar">
-            <div class="nav-logo">
-                <a href="#home">J<span>B</span></a>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-brand magnetic" data-magnetic>Janak Tech Solutions</a>
+            <div class="nav-links">
+                <a href="#vision" class="nav-link">Vision</a>
+                <a href="#power" class="nav-link">Power</a>
+                <a href="#projects" class="nav-link">Empire</a>
+                <a href="#ecosystem" class="nav-link">Ecosystem</a>
+                <a href="#contact" class="btn-primary magnetic" data-magnetic><span>Connect</span></a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="nav-extra">
-                <button id="theme-toggle"><i class="fas fa-moon"></i></button>
-                <a href="#contact" class="btn-hire">Hire Me</a>
-                <div class="menu-btn"><i class="fas fa-bars"></i></div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <!-- Social Sidebar -->
-    <div class="social-sidebar">
-        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-        <div class="line"></div>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="canvas-container" id="canvas-container"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle text-reveal">SYSTEM ONLINE // AUTHORIZED ACCESS</p>
+            <h1 class="hero-title">
+                <span class="text-reveal">Janak</span><br>
+                <span class="text-reveal neon-text">Bhandari</span>
+            </h1>
+            <p class="hero-role text-reveal">CEO | Building the Future with Technology</p>
+            <div class="hero-cta text-reveal">
+                <a href="#vision" class="btn-glass magnetic border-glow" data-magnetic>
+                    Enter the Future
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-prompt">
+            <div class="mouse"></div>
+            <span>Scroll to Discover</span>
+        </div>
+    </section>
 
-    <!-- Main Content -->
-    <main>
-        
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
-            <div class="hero-overlay"></div>
-            <!-- Video Background (Add your video URL here) -->
-            <!-- <video autoplay muted loop playsinline class="hero-video">
-                <source src="assets/videos/hero_bg.mp4" type="video/mp4">
-            </video> -->
-            <div class="hero-content" data-tilt>
-                <p class="hero-subtitle">Welcome to the future of development</p>
-                <h1 class="hero-title">I'm <span>Janak Bhandari</span></h1>
-                <div class="typing-container">
-                    <span class="type-text"></span>
-                    <span class="cursor">|</span>
+    <!-- Vision Section -->
+    <section class="vision section-pad" id="vision">
+        <div class="container grid-2">
+            <div class="vision-info">
+                <div class="section-title gs-up">
+                    <span class="label">01 // The Vision</span>
+                    <h2>Forging a Digital <span class="accent">Empire</span></h2>
                 </div>
-                <p class="hero-tagline">Building Future-Ready Digital Experiences</p>
-                <div class="hero-btns">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                <div class="vision-text gs-up">
+                    <p class="lead">I don't just write code. I engineer ecosystems that redefine how we interact with
+                        technology.</p>
+                    <p>As the CEO of Janak Tech Solutions Ltd, my mission is to bridge the gap between imagination and
+                        digital reality. From scalable enterprise architectures to hyper-engaging consumer experiences,
+                        every line of code is a step toward the future.</p>
                 </div>
-            </div>
-            <div class="scroll-down">
-                <span>SCROLL DOWN</span>
-                <div class="mouse"></div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about-section section-padding">
-            <div class="container">
-                <div class="section-header center">
-                    <h2 class="section-title">About <span>Me</span></h2>
-                    <div class="title-line"></div>
-                </div>
-                <div class="about-grid">
-                    <div class="about-img revealed">
-                        <div class="img-box">
-                            <!-- Placeholder for Janak's photo -->
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="Janak Bhandari">
-                            <div class="img-card card-1"><i class="fas fa-code"></i> <span>5+ Years Exp</span></div>
-                            <div class="img-card card-2"><i class="fas fa-award"></i> <span>TOP RATED</span></div>
-                        </div>
+                <div class="stats-grid gs-up">
+                    <div class="stat-item glass">
+                        <h3>10+</h3>
+                        <p>Enterprise Systems</p>
                     </div>
-                    <div class="about-text">
-                        <h3>CEO & Lead Developer at <span>Janak Tech Solutions Ltd</span></h3>
-                        <p>I am a passionate Full Stack Developer with a vision to transform the digital landscape. With 5+ years of experience in crafting premium software solutions, I lead Janak Tech Solutions Ltd towards innovation and excellence.</p>
-                        <p>My approach combines cinematic aesthetics with industrial-grade performance, ensuring every project I touch becomes a benchmark of quality.</p>
-                        
-                        <div class="counter-grid">
-                            <div class="counter-item">
-                                <h4 class="counter" data-target="150">0</h4>
-                                <p>Projects Completed</p>
-                            </div>
-                            <div class="counter-item">
-                                <h4 class="counter" data-target="80">0</h4>
-                                <p>Happy Clients</p>
-                            </div>
-                            <div class="counter-item">
-                                <h4 class="counter" data-target="5">0</h4>
-                                <p>Years Experience</p>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-primary">Download CV</a>
+                    <div class="stat-item glass">
+                        <h3>99.9%</h3>
+                        <p>Uptime Architected</p>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="skills-section section-padding">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Mastered <span>Stacks</span></h2>
-                    <div class="title-line"></div>
-                </div>
-                <div class="skills-container">
-                    <div class="skill-category">
-                        <h3>Frontend Architecture</h3>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>HTML5 / CSS3</span>
-                                    <span class="skill-perc">95%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>JavaScript (ES6+)</span>
-                                    <span class="skill-perc">90%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>React & Next.js</span>
-                                    <span class="skill-perc">85%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Backend & Cloud</h3>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>Node.js / Express</span>
-                                    <span class="skill-perc">88%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>PHP / Laravel</span>
-                                    <span class="skill-perc">92%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-fill" data-width="92%"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>MongoDB / MySQL</span>
-                                    <span class="skill-perc">85%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Design & Tools</h3>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>UI/UX Design (Figma)</span>
-                                    <span class="skill-perc">80%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>Git / CI/CD</span>
-                                    <span class="skill-perc">90%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>AI Integration</span>
-                                    <span class="skill-perc">75%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-fill" data-width="75%"></div></div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="vision-image gs-up">
+                <div class="image-wrapper glass border-glow">
+                    <!-- Cinematic CEO Representation -->
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
+                        alt="CEO Vision" class="parallax-img">
+                    <div class="overlay-grad"></div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="projects-section section-padding">
-            <div class="container">
-                <div class="section-header center">
-                    <h2 class="section-title">Cinematic <span>Works</span></h2>
-                    <div class="title-line"></div>
-                </div>
-                <div class="projects-grid">
-                    <!-- Project 1 -->
-                    <div class="project-card" data-tilt>
-                        <div class="project-img">
-                            <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=2072&auto=format&fit=crop" alt="Task Management System">
-                            <div class="project-links">
-                                <a href="#" title="View Demo"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h3>SaaS Task Master</h3>
-                            <p>A high-performance task management system with real-time collaboration and AI prioritization.</p>
-                            <div class="tech-stack">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>Socket.io</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="project-card" data-tilt>
-                        <div class="project-img">
-                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop" alt="Beast Crunch">
-                            <div class="project-links">
-                                <a href="#" title="View Demo"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h3>Beast Crunch Restaurant</h3>
-                            <p>Cinematic dining experience with high-end visuals and an integrated order management system.</p>
-                            <div class="tech-stack">
-                                <span>HTML5</span>
-                                <span>GSAP</span>
-                                <span>PHP</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project 3 -->
-                    <div class="project-card" data-tilt>
-                        <div class="project-img">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Janak Tech Solutions">
-                            <div class="project-links">
-                                <a href="#" title="View Demo"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h3>Janak Tech Portfolio</h3>
-                            <p>Official corporate website highlighting enterprise solutions and innovation-driven services.</p>
-                            <div class="tech-stack">
-                                <span>Next.js</span>
-                                <span>Tailwind</span>
-                                <span>Framer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section class="experience-section section-padding">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Career <span>Timeline</span></h2>
-                    <div class="title-line"></div>
-                </div>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <span class="date">2023 - Present</span>
-                            <h3>CEO & Founder</h3>
-                            <h4>Janak Tech Solutions Ltd</h4>
-                            <p>Leading a team of developers to create high-impact software solutions for global clients.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <span class="date">2021 - 2023</span>
-                            <h3>Senior Full Stack Developer</h3>
-                            <h4>Global Tech Corp</h4>
-                            <p>Architected scalable web applications and mentored junior developers in modern stacks.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <span class="date">2019 - 2021</span>
-                            <h3>UI/UX Developer</h3>
-                            <h4>Creative Studio</h4>
-                            <p>Focused on cinematic web design and interactive user interfaces using GSAP and Three.js.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="services-section section-padding">
-            <div class="container">
-                <div class="section-header center">
-                    <h2 class="section-title">Premium <span>Services</span></h2>
-                    <div class="title-line"></div>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card reveal">
-                        <i class="fas fa-laptop-code"></i>
-                        <h3>Web Development</h3>
-                        <p>High-end, responsive, and performance-optimized websites using cutting-edge technologies.</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <i class="fas fa-paint-brush"></i>
-                        <h3>UI/UX Design</h3>
-                        <p>Futuristic designs that provide seamless user experiences and stunning visual appeal.</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <i class="fas fa-brain"></i>
-                        <h3>AI Integration</h3>
-                        <p>Smart solutions driven by artificial intelligence to automate and enhance digital workflows.</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <i class="fas fa-server"></i>
-                        <h3>Backend Solutions</h3>
-                        <p>Robust and secure server-side architectures designed for maximum scalability and speed.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="testimonial-section section-padding">
-            <div class="container">
-                <div class="section-header center">
-                    <h2 class="section-title">Client <span>Feedback</span></h2>
-                    <div class="title-line"></div>
-                </div>
-                <div class="testimonial-slider">
-                    <div class="testimonial-card">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Janak is a visionary developer. He turned our complex requirements into a stunning, user-friendly product."</p>
-                        <div class="client-info">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client">
-                            <div>
-                                <h4>Alex Johnson</h4>
-                                <span>CEO at InnovateX</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Additional slide for JS to handle -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section section-padding">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Get In <span>Touch</span></h2>
-                    <div class="title-line"></div>
-                </div>
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <h3>Let's build something <span>incredible</span></h3>
-                        <p>Ready to start your next big project? Contact me today for a consultation.</p>
-                        <div class="info-list">
-                            <div class="info-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>janak@janaktech.com</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-phone"></i>
-                                <span>+977 98XXXXXXXX</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Kathmandu, Nepal</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-form-container glass">
-                        <form id="contact-form">
-                            <div class="form-group">
-                                <input type="text" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" placeholder="Your Email" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea placeholder="Your Message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="main-footer">
+    <!-- Digital Power Section -->
+    <section class="power section-pad" id="power">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">J<span>B</span></div>
-                <p>&copy; 2026 Janak Tech Solutions Ltd. All Rights Reserved.</p>
-                <div class="footer-links">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <div class="section-title text-center gs-up">
+                <span class="label">02 // Capabilities</span>
+                <h2>Digital <span class="accent">Power</span></h2>
+                <p class="subtitle">Commanding the bleeding edge of modern technology.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card glass border-glow gs-stagger magnetic-slight" data-magnetic>
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                        </svg>
+                    </div>
+                    <h3>Web Architecture</h3>
+                    <p>Ultra-performant, highly scalable applications crafted to handle millions of interactions with
+                        flawless execution.</p>
+                    <div class="hover-glow"></div>
+                </div>
+
+                <div class="service-card glass border-glow gs-stagger magnetic-slight" data-magnetic>
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                        </svg>
+                    </div>
+                    <h3>App Development</h3>
+                    <p>Next-gen mobile experiences delivering native-level performance within sleek, futuristic
+                        interfaces.</p>
+                    <div class="hover-glow"></div>
+                </div>
+
+                <div class="service-card glass border-glow gs-stagger magnetic-slight" data-magnetic>
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                        </svg>
+                    </div>
+                    <h3>Cybersecurity</h3>
+                    <p>Fortified digital perimeters. We integrate zero-trust architectures and enterprise-level
+                        encryption from day one.</p>
+                    <div class="hover-glow"></div>
+                </div>
+
+                <div class="service-card glass border-glow gs-stagger magnetic-slight" data-magnetic>
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" />
+                        </svg>
+                    </div>
+                    <h3>AI Solutions</h3>
+                    <p>Deployment of intelligent neural networks and LLM models that systematically enhance business
+                        operations.</p>
+                    <div class="hover-glow"></div>
                 </div>
             </div>
-            <p class="credit">Designed & Developed by <span>Janak Tech Solutions Ltd</span></p>
+        </div>
+    </section>
+
+    <!-- Projects / Empire -->
+    <section class="projects section-pad" id="projects">
+        <div class="container">
+            <div class="section-title text-center gs-up">
+                <span class="label">03 // The Empire</span>
+                <h2>Flagship <span class="accent">Products</span></h2>
+            </div>
+
+            <div class="projects-list">
+                <!-- Project 1 -->
+                <div class="project-row gs-up">
+                    <div class="project-visual">
+                        <div class="glass border-glow image-wrap">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"
+                                alt="Digital Campus OS">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <span class="project-tag">SaaS Platform / EdTech</span>
+                        <h3 class="project-title">Digital Campus OS</h3>
+                        <p class="project-desc">A comprehensive, AI-powered operating system engineered for educational
+                            institutions. Connecting students, teachers, and admins through a high-performance,
+                            dark-mode-first glassmorphism interface.</p>
+                        <a href="#" class="btn-text magnetic" data-magnetic>Explore Case Study <svg width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-row reverse gs-up">
+                    <div class="project-visual">
+                        <div class="glass border-glow image-wrap">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
+                                alt="Beast Crunch Platform">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <span class="project-tag">E-Commerce / FoodTech</span>
+                        <h3 class="project-title">Beast Crunch UX</h3>
+                        <p class="project-desc">A cinematic, ultra-responsive digital storefront for a premium
+                            restaurant brand. Featuring high-end 3D product visuals, real-time sync, and integrated
+                            automated WhatsApp ordering pipelines.</p>
+                        <a href="#" class="btn-text magnetic" data-magnetic>Explore Case Study <svg width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Ecosystem -->
+    <section class="ecosystem section-pad" id="ecosystem">
+        <div class="container text-center">
+            <div class="section-title gs-up">
+                <span class="label">04 // Infrastructure</span>
+                <h2>Tech <span class="accent">Ecosystem</span></h2>
+                <p class="subtitle">Our foundational technologies powering the future.</p>
+            </div>
+
+            <div class="tech-grid gs-up">
+                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>React / Next.js</div>
+                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>Node.js & Express</div>
+                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>Three.js / WebGL</div>
+                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>GSAP Animation</div>
+                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>TypeScript</div>
+                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>Flutter & Dart</div>
+                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>PostgreSQL / Mongo</div>
+                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>AWS Cloud</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section-pad" id="contact">
+        <div class="container container-sm">
+            <div class="contact-card glass border-glow gs-up">
+                <div class="section-title">
+                    <span class="label">05 // Transmission</span>
+                    <h2>Initiate <span class="accent">Protocol</span></h2>
+                    <p>Let's architect your next billion-dollar platform.</p>
+                </div>
+
+                <form class="future-form">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder=" " required>
+                        <label for="name">Identifier (Name)</label>
+                        <div class="line-focus"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder=" " required>
+                        <label for="email">Comms Link (Email)</label>
+                        <div class="line-focus"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="4" placeholder=" " required></textarea>
+                        <label for="message">Transmission Data (Message)</label>
+                        <div class="line-focus"></div>
+                    </div>
+                    <!-- Chatbot trigger link -->
+                    <div class="chatbot-hint">
+                        Prefer real-time? <a id="open-chatbot">Talk to my AI assistant.</a>
+                    </div>
+                    <button type="submit" class="btn-primary magnetic w-full" data-magnetic>
+                        <span>Send Transmission</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer glass">
+        <div class="container footer-flex">
+            <div class="brand">Janak Tech Solutions Ltd. &copy; 2026</div>
+            <div class="social-links">
+                <a href="#" class="magnetic-slight" data-magnetic>LinkedIn</a>
+                <a href="#" class="magnetic-slight" data-magnetic>GitHub</a>
+                <a href="#" class="magnetic-slight" data-magnetic>Twitter</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/97798XXXXXXXX" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <!-- Scripts -->
-    <!-- GSAP & Core Libraries -->
+    <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="js/script.js"></script>
+    <!-- Three.js for Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
