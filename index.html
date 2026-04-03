@@ -1,319 +1,698 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Janak Bhandari | CEO & Full Stack Developer</title>
-    <meta name="description"
-        content="Portfolio of Janak Bhandari - CEO & Full Stack Developer. Discover an elite digital empire.">
+    <title>Janak Bhandari | Portfolio</title>
+    <meta name="description" content="Portfolio of Janak Bhandari - BCA Student & Aspiring Software Developer">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (CDN for simple projects without Node) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6b21a8', // Deep purple
+                        secondary: '#3b82f6', // Neon blue accent
+                        dark: '#0f172a',
+                        darker: '#020617',
+                        light: '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
-<body class="loading">
-    <!-- Custom Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursor-follower"></div>
+<body class="bg-light dark:bg-darker text-slate-800 dark:text-slate-200 font-inter transition-colors duration-300">
 
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-logo">JB.</div>
-            <div class="loader-text">Initialize Empire</div>
-            <div class="progress-bar">
-                <div class="progress"></div>
-            </div>
-        </div>
-    </div>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
 
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="nav-brand magnetic" data-magnetic>Janak Tech Solutions</a>
-            <div class="nav-links">
-                <a href="#vision" class="nav-link">Vision</a>
-                <a href="#power" class="nav-link">Power</a>
-                <a href="#projects" class="nav-link">Empire</a>
-                <a href="#ecosystem" class="nav-link">Ecosystem</a>
-                <a href="#contact" class="btn-primary magnetic" data-magnetic><span>Connect</span></a>
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300 py-4" id="navbar">
+        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#"
+                class="text-2xl font-poppins font-bold text-primary dark:text-secondary tracking-tighter">JB<span
+                    class="text-slate-800 dark:text-white">.</span></a>
+
+            <div class="hidden md:flex space-x-8 items-center font-medium">
+                <a href="#home" class="nav-link hover:text-primary dark:hover:text-secondary transition-colors">Home</a>
+                <a href="#about"
+                    class="nav-link hover:text-primary dark:hover:text-secondary transition-colors">About</a>
+                <a href="#skills"
+                    class="nav-link hover:text-primary dark:hover:text-secondary transition-colors">Skills</a>
+                <a href="#projects"
+                    class="nav-link hover:text-primary dark:hover:text-secondary transition-colors">Projects</a>
+                <a href="#resume"
+                    class="nav-link hover:text-primary dark:hover:text-secondary transition-colors">Resume</a>
+                <a href="#contact"
+                    class="nav-link hover:text-primary dark:hover:text-secondary transition-colors">Contact</a>
+
+                <!-- Theme Toggle -->
+                <button id="theme-toggle"
+                    class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+                </button>
             </div>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-2xl focus:outline-none" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="canvas-container" id="canvas-container"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="hero-subtitle text-reveal">SYSTEM ONLINE // AUTHORIZED ACCESS</p>
-            <h1 class="hero-title">
-                <span class="text-reveal">Janak</span><br>
-                <span class="text-reveal neon-text">Bhandari</span>
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <!-- Animated Background Elements -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -z-10 animate-blob">
+        </div>
+        <div
+            class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[100px] -z-10 animate-blob animation-delay-2000">
+        </div>
+
+        <div class="container mx-auto px-6 md:px-12 text-center z-10 hero-content">
+            <span class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary dark:bg-secondary/10 dark:text-secondary text-sm font-semibold mb-6 tracking-wide uppercase shadow-sm border border-primary/20 dark:border-secondary/20">Welcome to my portfolio</span>
+            <h1 class="text-5xl md:text-7xl font-poppins font-bold mb-6 leading-tight">
+                Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Janak Bhandari</span>
             </h1>
-            <p class="hero-role text-reveal">CEO | Building the Future with Technology</p>
-            <div class="hero-cta text-reveal">
-                <a href="#vision" class="btn-glass magnetic border-glow" data-magnetic>
-                    Enter the Future
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
+            <h2 class="text-2xl md:text-3xl font-medium text-slate-600 dark:text-slate-400 mb-8 h-10">
+                <span id="typewriter"></span><span class="cursor">|</span>
+            </h2>
+            <p class="max-w-2xl mx-auto text-lg mb-10 text-slate-500 dark:text-slate-400">
+                A passionate BCA student building modern, responsive, and visually stunning digital experiences.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="px-8 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">Hire Me</a>
+                <a href="#projects" class="px-8 py-4 rounded-full border-2 border-slate-300 dark:border-slate-700 font-semibold hover:border-primary dark:hover:border-secondary hover:text-primary dark:hover:text-secondary transition-all duration-300">View Projects</a>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="text-slate-400 hover:text-primary dark:hover:text-secondary transition-colors">
+                    <i class="fas fa-chevron-down text-2xl"></i>
                 </a>
             </div>
         </div>
-        <div class="scroll-prompt">
-            <div class="mouse"></div>
-            <span>Scroll to Discover</span>
-        </div>
     </section>
 
-    <!-- Vision Section -->
-    <section class="vision section-pad" id="vision">
-        <div class="container grid-2">
-            <div class="vision-info">
-                <div class="section-title gs-up">
-                    <span class="label">01 // The Vision</span>
-                    <h2>Forging a Digital <span class="accent">Empire</span></h2>
-                </div>
-                <div class="vision-text gs-up">
-                    <p class="lead">I don't just write code. I engineer ecosystems that redefine how we interact with
-                        technology.</p>
-                    <p>As the CEO of Janak Tech Solutions Ltd, my mission is to bridge the gap between imagination and
-                        digital reality. From scalable enterprise architectures to hyper-engaging consumer experiences,
-                        every line of code is a step toward the future.</p>
-                </div>
-                <div class="stats-grid gs-up">
-                    <div class="stat-item glass">
-                        <h3>10+</h3>
-                        <p>Enterprise Systems</p>
-                    </div>
-                    <div class="stat-item glass">
-                        <h3>99.9%</h3>
-                        <p>Uptime Architected</p>
-                    </div>
-                </div>
-            </div>
-            <div class="vision-image gs-up">
-                <div class="image-wrapper glass border-glow">
-                    <!-- Cinematic CEO Representation -->
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
-                        alt="CEO Vision" class="parallax-img">
-                    <div class="overlay-grad"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Digital Power Section -->
-    <section class="power section-pad" id="power">
-        <div class="container">
-            <div class="section-title text-center gs-up">
-                <span class="label">02 // Capabilities</span>
-                <h2>Digital <span class="accent">Power</span></h2>
-                <p class="subtitle">Commanding the bleeding edge of modern technology.</p>
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 section-heading">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-4">About <span
+                        class="text-primary dark:text-secondary">Me</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
             </div>
 
-            <div class="services-grid">
-                <div class="service-card glass border-glow gs-stagger magnetic-slight" data-magnetic>
-                    <div class="icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                        </svg>
-                    </div>
-                    <h3>Web Architecture</h3>
-                    <p>Ultra-performant, highly scalable applications crafted to handle millions of interactions with
-                        flawless execution.</p>
-                    <div class="hover-glow"></div>
-                </div>
-
-                <div class="service-card glass border-glow gs-stagger magnetic-slight" data-magnetic>
-                    <div class="icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-                        </svg>
-                    </div>
-                    <h3>App Development</h3>
-                    <p>Next-gen mobile experiences delivering native-level performance within sleek, futuristic
-                        interfaces.</p>
-                    <div class="hover-glow"></div>
-                </div>
-
-                <div class="service-card glass border-glow gs-stagger magnetic-slight" data-magnetic>
-                    <div class="icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                        </svg>
-                    </div>
-                    <h3>Cybersecurity</h3>
-                    <p>Fortified digital perimeters. We integrate zero-trust architectures and enterprise-level
-                        encryption from day one.</p>
-                    <div class="hover-glow"></div>
-                </div>
-
-                <div class="service-card glass border-glow gs-stagger magnetic-slight" data-magnetic>
-                    <div class="icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" />
-                        </svg>
-                    </div>
-                    <h3>AI Solutions</h3>
-                    <p>Deployment of intelligent neural networks and LLM models that systematically enhance business
-                        operations.</p>
-                    <div class="hover-glow"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects / Empire -->
-    <section class="projects section-pad" id="projects">
-        <div class="container">
-            <div class="section-title text-center gs-up">
-                <span class="label">03 // The Empire</span>
-                <h2>Flagship <span class="accent">Products</span></h2>
-            </div>
-
-            <div class="projects-list">
-                <!-- Project 1 -->
-                <div class="project-row gs-up">
-                    <div class="project-visual">
-                        <div class="glass border-glow image-wrap">
-                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"
-                                alt="Digital Campus OS">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 about-img-container perspective">
+                    <div
+                        class="glass-card p-2 rounded-2xl transform transition-transform duration-500 hover:rotate-y-12">
+                        <div
+                            class="aspect-square rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center overflow-hidden relative group">
+                            <a href='https://postimg.cc/y3B05sgf' target='_blank'><img src="https://i.postimg.cc/D045Sz2K/2510D3EE-5411-4959-AECD-EBDE9A2219EC.png" alt="Janak Bhandari" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"></a>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-white font-medium text-lg">Janak Bhandari</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-details">
-                        <span class="project-tag">SaaS Platform / EdTech</span>
-                        <h3 class="project-title">Digital Campus OS</h3>
-                        <p class="project-desc">A comprehensive, AI-powered operating system engineered for educational
-                            institutions. Connecting students, teachers, and admins through a high-performance,
-                            dark-mode-first glassmorphism interface.</p>
-                        <a href="#" class="btn-text magnetic" data-magnetic>Explore Case Study <svg width="24"
-                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg></a>
+                </div>
+
+                <div class="md:w-1/2 about-text">
+                    <h3 class="text-2xl font-poppins font-semibold mb-4">BCA Student & Web Developer</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                        I am currently pursuing my Bachelor of Computer Applications (BCA). I have a deep passion for
+                        software development, specifically in creating intuitive and visually appealing web
+                        applications. My journey involves continuous learning, logical problem-solving, and adapting to
+                        new technologies.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                        When I'm not coding, I enjoy exploring tech trends, reading about software architecture, and
+                        optimizing user experiences. I strive to blend clean code with gorgeous aesthetics.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-primary dark:text-secondary">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <span class="font-medium">Programming</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-primary dark:text-secondary">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <span class="font-medium">Web Dev</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-primary dark:text-secondary">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <span class="font-medium">Problem Solving</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-primary dark:text-secondary">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <span class="font-medium">Responsive UI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-slate-50 dark:bg-slate-900/50">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 section-heading">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-4">My <span
+                        class="text-primary dark:text-secondary">Skills</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Technical Skills List -->
+                <div class="space-y-8 skill-bars">
+                    <h3 class="text-2xl font-poppins font-semibold mb-6 flex items-center gap-2">
+                        <i class="fas fa-laptop-code text-primary dark:text-secondary"></i> Technical Skills
+                    </h3>
+
+                    <div class="skill-item">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">HTML/CSS</span>
+                            <span class="text-primary dark:text-secondary font-medium">90%</span>
+                        </div>
+                        <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                                style="width: 0%" data-width="90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">JavaScript</span>
+                            <span class="text-primary dark:text-secondary font-medium">85%</span>
+                        </div>
+                        <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                                style="width: 0%" data-width="85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Python</span>
+                            <span class="text-primary dark:text-secondary font-medium">80%</span>
+                        </div>
+                        <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                                style="width: 0%" data-width="80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Java</span>
+                            <span class="text-primary dark:text-secondary font-medium">75%</span>
+                        </div>
+                        <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                                style="width: 0%" data-width="75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">C Programming</span>
+                            <span class="text-primary dark:text-secondary font-medium">85%</span>
+                        </div>
+                        <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                                style="width: 0%" data-width="85%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Circular Charts for other skills -->
+                <div>
+                    <h3 class="text-2xl font-poppins font-semibold mb-8 flex items-center gap-2">
+                        <i class="fas fa-tools text-primary dark:text-secondary"></i> Professional Skills
+                    </h3>
+
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="flex flex-col items-center circular-skill">
+                            <div class="relative w-32 h-32 flex items-center justify-center mb-4">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"
+                                        class="text-slate-200 dark:text-slate-700"></circle>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"
+                                        stroke-dasharray="283" stroke-dashoffset="283"
+                                        class="text-primary transition-all duration-1000 ease-out circular-progress"
+                                        data-percent="85"></circle>
+                                </svg>
+                                <span class="absolute text-xl font-bold">85%</span>
+                            </div>
+                            <span class="font-medium">Problem Solving</span>
+                        </div>
+
+                        <div class="flex flex-col items-center circular-skill">
+                            <div class="relative w-32 h-32 flex items-center justify-center mb-4">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"
+                                        class="text-slate-200 dark:text-slate-700"></circle>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"
+                                        stroke-dasharray="283" stroke-dashoffset="283"
+                                        class="text-secondary transition-all duration-1000 ease-out circular-progress"
+                                        data-percent="90"></circle>
+                                </svg>
+                                <span class="absolute text-xl font-bold">90%</span>
+                            </div>
+                            <span class="font-medium">Adaptability</span>
+                        </div>
+
+                        <div class="flex flex-col items-center circular-skill">
+                            <div class="relative w-32 h-32 flex items-center justify-center mb-4">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"
+                                        class="text-slate-200 dark:text-slate-700"></circle>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"
+                                        stroke-dasharray="283" stroke-dashoffset="283"
+                                        class="text-primary transition-all duration-1000 ease-out circular-progress"
+                                        data-percent="80"></circle>
+                                </svg>
+                                <span class="absolute text-xl font-bold">80%</span>
+                            </div>
+                            <span class="font-medium">Communication</span>
+                        </div>
+
+                        <div class="flex flex-col items-center circular-skill">
+                            <div class="relative w-32 h-32 flex items-center justify-center mb-4">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"
+                                        class="text-slate-200 dark:text-slate-700"></circle>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"
+                                        stroke-dasharray="283" stroke-dashoffset="283"
+                                        class="text-secondary transition-all duration-1000 ease-out circular-progress"
+                                        data-percent="75"></circle>
+                                </svg>
+                                <span class="absolute text-xl font-bold">75%</span>
+                            </div>
+                            <span class="font-medium">Teamwork</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 relative">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 section-heading">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-4">Featured <span
+                        class="text-primary dark:text-secondary">Projects</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card group">
+                    <div
+                        class="glass-card rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 border border-transparent dark:hover:border-slate-700">
+                        <div class="h-48 bg-slate-200 dark:bg-slate-800 relative overflow-hidden">
+                            <div
+                                class="absolute inset-0 flex items-center justify-center opacity-50 group-hover:scale-110 transition-transform duration-500">
+                                <i class="fas fa-graduation-cap text-6xl text-slate-400"></i>
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                <div class="flex gap-2">
+                                    <a href="#"
+                                        class="w-10 h-10 rounded-full bg-white text-dark flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-hover"><i
+                                            class="fab fa-github"></i></a>
+                                    <a href="#"
+                                        class="w-10 h-10 rounded-full bg-white text-dark flex items-center justify-center hover:bg-secondary hover:text-white transition-colors cursor-hover"><i
+                                            class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex gap-2 mb-3">
+                                <span
+                                    class="text-xs font-semibold px-2 py-1 bg-primary/10 text-primary dark:text-secondary rounded">Java</span>
+                                <span
+                                    class="text-xs font-semibold px-2 py-1 bg-slate-200 dark:bg-slate-700 rounded">MySQL</span>
+                            </div>
+                            <h3
+                                class="text-xl font-poppins font-bold mb-2 group-hover:text-primary dark:group-hover:text-secondary transition-colors">
+                                Student Management System</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 flex-grow">A comprehensive desktop
+                                application to manage student records, courses, grades, and attendance with a robust
+                                database backend.</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-row reverse gs-up">
-                    <div class="project-visual">
-                        <div class="glass border-glow image-wrap">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
-                                alt="Beast Crunch Platform">
+                <div class="project-card group">
+                    <div
+                        class="glass-card rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-secondary/20 hover:-translate-y-2 border border-transparent dark:hover:border-slate-700">
+                        <div class="h-48 bg-slate-200 dark:bg-slate-800 relative overflow-hidden">
+                            <div
+                                class="absolute inset-0 flex items-center justify-center opacity-50 group-hover:scale-110 transition-transform duration-500">
+                                <i class="fas fa-globe text-6xl text-slate-400"></i>
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                <div class="flex gap-2">
+                                    <a href="#"
+                                        class="w-10 h-10 rounded-full bg-white text-dark flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-hover"><i
+                                            class="fab fa-github"></i></a>
+                                    <a href="#"
+                                        class="w-10 h-10 rounded-full bg-white text-dark flex items-center justify-center hover:bg-secondary hover:text-white transition-colors cursor-hover"><i
+                                            class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex gap-2 mb-3">
+                                <span
+                                    class="text-xs font-semibold px-2 py-1 bg-primary/10 text-primary dark:text-secondary rounded">HTML/CSS</span>
+                                <span
+                                    class="text-xs font-semibold px-2 py-1 bg-secondary/10 text-secondary rounded">JS</span>
+                                <span
+                                    class="text-xs font-semibold px-2 py-1 bg-slate-200 dark:bg-slate-700 rounded">GSAP</span>
+                            </div>
+                            <h3
+                                class="text-xl font-poppins font-bold mb-2 group-hover:text-primary dark:group-hover:text-secondary transition-colors">
+                                Premium Portfolio Website</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 flex-grow">A visually stunning,
+                                fully responsive personal portfolio featuring glassmorphism, dark/light modes, and GSAP
+                                animations.</p>
                         </div>
                     </div>
-                    <div class="project-details">
-                        <span class="project-tag">E-Commerce / FoodTech</span>
-                        <h3 class="project-title">Beast Crunch UX</h3>
-                        <p class="project-desc">A cinematic, ultra-responsive digital storefront for a premium
-                            restaurant brand. Featuring high-end 3D product visuals, real-time sync, and integrated
-                            automated WhatsApp ordering pipelines.</p>
-                        <a href="#" class="btn-text magnetic" data-magnetic>Explore Case Study <svg width="24"
-                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg></a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card group">
+                    <div
+                        class="glass-card rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 border border-transparent dark:hover:border-slate-700">
+                        <div class="h-48 bg-slate-200 dark:bg-slate-800 relative overflow-hidden">
+                            <div
+                                class="absolute inset-0 flex items-center justify-center opacity-50 group-hover:scale-110 transition-transform duration-500">
+                                <i class="fas fa-gamepad text-6xl text-slate-400"></i>
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                <div class="flex gap-2">
+                                    <a href="#"
+                                        class="w-10 h-10 rounded-full bg-white text-dark flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-hover"><i
+                                            class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex gap-2 mb-3">
+                                <span
+                                    class="text-xs font-semibold px-2 py-1 bg-primary/10 text-primary dark:text-secondary rounded">Python</span>
+                                <span
+                                    class="text-xs font-semibold px-2 py-1 bg-slate-200 dark:bg-slate-700 rounded">CLI</span>
+                            </div>
+                            <h3
+                                class="text-xl font-poppins font-bold mb-2 group-hover:text-primary dark:group-hover:text-secondary transition-colors">
+                                CLI Mini Games</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 flex-grow">A collection of classic
+                                games (Tic-Tac-Toe, Snake, Hangman) implemented in Python to run entirely in the
+                                terminal.</p>
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#"
+                    class="inline-flex items-center gap-2 font-semibold text-primary dark:text-secondary hover:underline group cursor-hover">
+                    View More on GitHub <i
+                        class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Tech Ecosystem -->
-    <section class="ecosystem section-pad" id="ecosystem">
-        <div class="container text-center">
-            <div class="section-title gs-up">
-                <span class="label">04 // Infrastructure</span>
-                <h2>Tech <span class="accent">Ecosystem</span></h2>
-                <p class="subtitle">Our foundational technologies powering the future.</p>
+    <!-- Resume Section -->
+    <section id="resume" class="py-24 bg-slate-50 dark:bg-slate-900/50">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 section-heading">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-4">My <span
+                        class="text-primary dark:text-secondary">Journey</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8"></div>
+                <a href="https://drive.google.com/file/d/1yn_UJWJJqevfqlfjDeFnsAoOMaiOkfa_/view?usp=drivesdk"
+                    target="_blank"
+                    class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-medium shadow-lg hover:bg-primary/90 transition-colors cursor-hover">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
             </div>
 
-            <div class="tech-grid gs-up">
-                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>React / Next.js</div>
-                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>Node.js & Express</div>
-                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>Three.js / WebGL</div>
-                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>GSAP Animation</div>
-                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>TypeScript</div>
-                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>Flutter & Dart</div>
-                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>PostgreSQL / Mongo</div>
-                <div class="tech-item glass border-glow magnetic-slight" data-magnetic>AWS Cloud</div>
+            <div class="max-w-3xl mx-auto">
+                <h3 class="text-2xl font-poppins font-semibold mb-8 flex items-center gap-2">
+                    <i class="fas fa-user-graduate text-primary dark:text-secondary"></i> Education
+                </h3>
+
+                <div class="max-w-4xl mx-auto relative">
+                    <!-- Vertical Line -->
+                    <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-primary/50 to-secondary/50"></div>
+                    
+                    <!-- Timeline items container -->
+                    <div class="space-y-16">
+                        <!-- Education Item 1 -->
+                        <div class="relative timeline-item">
+                            <div class="md:flex items-center justify-between">
+                                <!-- School/Title (Left) -->
+                                <div class="md:w-5/12 text-left md:text-right md:pr-12 mb-4 md:mb-0">
+                                    <h4 class="text-xl font-bold font-poppins text-primary dark:text-secondary leading-tight">Bachelor of Computer Applications</h4>
+                                    <span class="text-slate-600 dark:text-slate-300 font-medium">New Horizon College</span>
+                                    <div class="text-sm font-semibold opacity-60 mt-1">2023 - Present</div>
+                                </div>
+                                
+                                <!-- Center Point -->
+                                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white dark:border-slate-900 z-10 shadow-lg shadow-primary/20"></div>
+                                
+                                <!-- Detail Box (Right) -->
+                                <div class="md:w-5/12 md:pl-12">
+                                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-primary hover:translate-x-2 transition-transform duration-300">
+                                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                            Currently focusing on deep software engineering principles, advanced data structures, and full-stack web development at New Horizon College.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Education Item 2 -->
+                        <div class="relative timeline-item">
+                            <div class="md:flex items-center justify-between">
+                                <!-- School/Title (Left) -->
+                                <div class="md:w-5/12 text-left md:text-right md:pr-12 mb-4 md:mb-0">
+                                    <h4 class="text-xl font-bold font-poppins text-primary dark:text-secondary leading-tight">Higher Secondary Education (Commerce)</h4>
+                                    <span class="text-slate-600 dark:text-slate-300 font-medium">New Horizon PU College</span>
+                                    <div class="text-sm font-semibold opacity-60 mt-1">2021 - 2023</div>
+                                </div>
+                                
+                                <!-- Center Point -->
+                                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-secondary border-4 border-white dark:border-slate-900 z-10 shadow-lg shadow-secondary/20"></div>
+                                
+                                <!-- Detail Box (Right) -->
+                                <div class="md:w-5/12 md:pl-12">
+                                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-secondary hover:translate-x-2 transition-transform duration-300">
+                                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                            Completed Higher Secondary (+2) in the Commerce stream. Developed a strong analytical background and fundamental understanding of business, which I now apply to my computer applications and software logic.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Education Item 3 -->
+                        <div class="relative timeline-item">
+                            <div class="md:flex items-center justify-between">
+                                <!-- School/Title (Left) -->
+                                <div class="md:w-5/12 text-left md:text-right md:pr-12 mb-4 md:mb-0">
+                                    <h4 class="text-xl font-bold font-poppins text-primary dark:text-secondary leading-tight">Secondary Education (10th)</h4>
+                                    <span class="text-slate-600 dark:text-slate-300 font-medium">Shree Balkalyan Secondary School</span>
+                                    <div class="text-sm font-semibold opacity-60 mt-1">Completed in 2021</div>
+                                </div>
+                                
+                                <!-- Center Point -->
+                                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white dark:border-slate-900 z-10 shadow-lg shadow-primary/20"></div>
+                                
+                                <!-- Detail Box (Right) -->
+                                <div class="md:w-5/12 md:pl-12">
+                                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-primary hover:translate-x-2 transition-transform duration-300">
+                                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                            Achieved a strong academic foundation in secondary school, consistently performing at the top of my class with a high GPA, setting a solid base for my higher studies and technical path.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact section-pad" id="contact">
-        <div class="container container-sm">
-            <div class="contact-card glass border-glow gs-up">
-                <div class="section-title">
-                    <span class="label">05 // Transmission</span>
-                    <h2>Initiate <span class="accent">Protocol</span></h2>
-                    <p>Let's architect your next billion-dollar platform.</p>
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <!-- Abstract Shapes -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -z-10"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-[80px] -z-10"></div>
+
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 section-heading">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-4">Get In <span
+                        class="text-primary dark:text-secondary">Touch</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-5/12">
+                    <h3 class="text-3xl font-poppins font-bold mb-6">Let's Talk About Progress</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-8">
+                        I'm currently looking for new opportunities, internships, and collaborative projects. Feel free
+                        to reach out to me!
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4 group">
+                            <div
+                                class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-xl text-primary dark:text-secondary group-hover:scale-110 transition-transform">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="block text-sm text-slate-500">Email Me</span>
+                                <a href="mailto:janakbhandari3334@gmail.com"
+                                    class="font-medium hover:text-primary dark:hover:text-secondary transition-colors cursor-hover">janakbhandari3334@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 group">
+                            <div
+                                class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-xl text-primary dark:text-secondary group-hover:scale-110 transition-transform">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <span class="block text-sm text-slate-500">Location</span>
+                                <span class="font-medium">Kathmandu, Nepal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h4 class="font-medium mb-4">Follow Me</h4>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/janakbhandari3334" target="_blank"
+                                class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 cursor-hover">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/janakbhandari2003" target="_blank"
+                                class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-[#0077b5] hover:text-white hover:border-transparent transition-all duration-300 cursor-hover">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://twitter.com/janak_oct3" target="_blank"
+                                class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-[#1DA1F2] hover:text-white hover:border-transparent transition-all duration-300 cursor-hover">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <form class="future-form">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder=" " required>
-                        <label for="name">Identifier (Name)</label>
-                        <div class="line-focus"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder=" " required>
-                        <label for="email">Comms Link (Email)</label>
-                        <div class="line-focus"></div>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" rows="4" placeholder=" " required></textarea>
-                        <label for="message">Transmission Data (Message)</label>
-                        <div class="line-focus"></div>
-                    </div>
-                    <!-- Chatbot trigger link -->
-                    <div class="chatbot-hint">
-                        Prefer real-time? <a id="open-chatbot">Talk to my AI assistant.</a>
-                    </div>
-                    <button type="submit" class="btn-primary magnetic w-full" data-magnetic>
-                        <span>Send Transmission</span>
-                    </button>
-                </form>
+                <div class="lg:w-7/12">
+                    <form class="glass-card p-8 rounded-2xl shadow-xl">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="input-group">
+                                <label for="name" class="block text-sm font-medium mb-2 pl-1">Your Name</label>
+                                <input type="text" id="name"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:focus:ring-secondary/50 focus:border-transparent transition-all"
+                                    placeholder="John Doe">
+                            </div>
+                            <div class="input-group">
+                                <label for="email" class="block text-sm font-medium mb-2 pl-1">Your Email</label>
+                                <input type="email" id="email"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:focus:ring-secondary/50 focus:border-transparent transition-all"
+                                    placeholder="john@example.com">
+                            </div>
+                        </div>
+                        <div class="input-group mb-6">
+                            <label for="subject" class="block text-sm font-medium mb-2 pl-1">Subject</label>
+                            <input type="text" id="subject"
+                                class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:focus:ring-secondary/50 focus:border-transparent transition-all"
+                                placeholder="Internship Opportunity">
+                        </div>
+                        <div class="input-group mb-6">
+                            <label for="message" class="block text-sm font-medium mb-2 pl-1">Message</label>
+                            <textarea id="message" rows="5"
+                                class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:focus:ring-secondary/50 focus:border-transparent transition-all resize-none"
+                                placeholder="Hello Janak, I would like to..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full py-4 rounded-lg bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-hover">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer glass">
-        <div class="container footer-flex">
-            <div class="brand">Janak Tech Solutions Ltd. &copy; 2026</div>
-            <div class="social-links">
-                <a href="#" class="magnetic-slight" data-magnetic>LinkedIn</a>
-                <a href="#" class="magnetic-slight" data-magnetic>GitHub</a>
-                <a href="#" class="magnetic-slight" data-magnetic>Twitter</a>
-            </div>
+    <!-- Footer -->
+    <footer class="py-8 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 text-center">
+        <div class="container mx-auto px-6">
+            <a href="#"
+                class="text-2xl font-poppins font-bold text-primary dark:text-secondary inline-block mb-4">JB<span
+                    class="text-slate-800 dark:text-slate-200">.</span></a>
+            <p class="text-slate-500 text-sm">
+                &copy; <span id="current-year"></span> Janak Bhandari. All rights reserved.
+            </p>
+            <p class="text-slate-400 text-xs mt-2">
+                Designed with using HTML, Tailwind & GSAP
+            </p>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <!-- GSAP for Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Three.js for Canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
